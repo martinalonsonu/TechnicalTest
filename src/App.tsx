@@ -14,6 +14,7 @@ interface NewsApi {
 function App() {
     const [news, setNews] = useState<NewsApi[]>([])
     const [viewMore, setViewMore] = useState<boolean>(false)
+    const [visibleNews, setVisibleNews] = useState<number>(5)
 
     useEffect(() => {
         const importDataApi = async () => {
@@ -21,7 +22,7 @@ function App() {
                 const response = await axios.get('https://api.jsonbin.io/v3/b/63654b012b3499323bf58225')
                 if (response) {
                     const data: NewsApi[] = response.data?.record?.notes
-                    viewMore ? setNews(data) : setNews(data.slice(0, 5))
+                    setNews(data)
                 }
             } catch (error) {
                 console.error(error)
@@ -31,7 +32,12 @@ function App() {
     }, [viewMore])
 
     const handleChangeButton = () => {
-        setViewMore(!viewMore)
+        setViewMore(!viewMore);
+        if (!viewMore) {
+            setVisibleNews(news.length);
+        } else {
+            setVisibleNews(5);
+        }
     }
 
     console.log(news)
@@ -40,7 +46,7 @@ function App() {
             <div style={{ width: '300px', minHeight: '300px', border: '1px solid black' }}>
                 <h1>ÚLTIMAS NOTICIAS</h1>
                 {news.length > 0 && (
-                    news?.map((newItem: NewsApi) => (
+                    news?.slice(0, visibleNews).map((newItem: NewsApi) => (
                         <div key={newItem.id}>
                             <p>. {newItem.title}</p>
                         </div>
