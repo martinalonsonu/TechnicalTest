@@ -1,5 +1,9 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import arrowDown from './assets/arrow-down.svg'
+import arrowUp from './assets/arrow-up.svg'
+import circle from './assets/circle.svg'
+import './index.scss'
 
 interface NewsApi {
     id: string;
@@ -42,19 +46,27 @@ function App() {
 
     console.log(news)
     return (
-        <div style={{ width: '100vw', height: '100vh', padding: 0, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <div style={{ width: '300px', minHeight: '300px', border: '1px solid black' }}>
-                <h1>ÚLTIMAS NOTICIAS</h1>
-                {news.length > 0 && (
-                    news?.slice(0, visibleNews).map((newItem: NewsApi) => (
-                        <div key={newItem.id}>
-                            <p>. {newItem.title}</p>
-                        </div>
-                    ))
-                )}
-                <button onClick={handleChangeButton}>{viewMore ? "Ver menos" : "Ver más"}</button>
+        <>
+            <div className="container">
+                <div>
+                    <p className="container-title">ÚLTIMAS NOTICIAS</p>
+                </div>
+                <div className="container-items">
+                    {news.length > 0 && (
+                        news?.slice(0, visibleNews).map((newItem: NewsApi) => (
+                            <div key={newItem.id} className="container-items-news">
+                                <img className="container-icon" src={circle} alt="circle" />
+                                <p>{newItem.title}</p>
+                            </div>
+                        ))
+                    )}
+                </div>
+                <div className="container-button" onClick={handleChangeButton}>
+                    <button className="container-button-btn" >{viewMore ? "VER MENOS" : "VER MÁS"}</button>
+                    <img className="container-button-icon" src={viewMore ? arrowUp : arrowDown} alt="arrowDownIcon" />
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 
