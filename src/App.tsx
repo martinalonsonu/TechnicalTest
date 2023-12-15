@@ -48,7 +48,6 @@ function App() {
         }
     }
 
-    console.log(news)
     return (
         <>
             <div className="container">
