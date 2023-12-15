@@ -1,30 +1,21 @@
-# React + TypeScript + Vite
+# Realización de Prueba Técnica
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+En la realización de este proyecto se optó por generarlo con Vite que nos permite tener mejor experiencia de desarrollo y ya viene con algunas configuraciones para nuestro proyecto.
 
-Currently, two official plugins are available:
+Stack tecnológico: React + Typescript + ESlint + Axios
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+Una vez generado el proyecto, ubicándonos en la raíz del proyecto abrimos una consola y realizamos el siguiente comando para instalar todas las dependencias:
+```
+npm install
+```
+Procedemos luego con el siguiente comando para levantar el proyecto en nuestro navegador:
+```
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Lo que se busca en primera instancia es traer los datos de la API alcanzada:
+```
+https://api.jsonbin.io/v3/b/63654b012b3499323bf58225
+```
+
+Se continúa con la obtención de la información y el maquetado de nuestra aplicación. Se realiza el estilado usando archivos con la extensión scss, para lo cual instalamos Sass como preprocesador.
