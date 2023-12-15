@@ -48,8 +48,9 @@ function App() {
     return (
         <>
             <div className="container">
-                <div>
-                    <p className="container-title">ÚLTIMAS NOTICIAS</p>
+                <div className="container-title">
+                    <p>ÚLTIMAS NOTICIAS</p>
+                    <div className="container-title-line"></div>
                 </div>
                 <div className="container-items">
                     {news.length > 0 && (

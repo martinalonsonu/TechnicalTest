@@ -12,7 +12,7 @@ body {
     margin: 0;
     padding: 15px;
     min-height: 300px;
-    border: 2px solid #dbdbdb;
+    border: 1px solid #ababab;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -22,6 +22,16 @@ body {
     font-size: 15px;
     font-weight: bold;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    position: relative;
+}
+
+.container-title-line {
+    position: absolute;
+    bottom: 0;
+    left: 0%;
+    width: 50px;
+    height: 4px;
+    background-color: #00DB54;
 }
 
 .container-items {
