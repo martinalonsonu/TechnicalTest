@@ -1,42 +1,26 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
+import { useApi } from "./hook/useApi"
+import { Note } from "./interfaces"
 import arrowDown from './assets/arrow-down.svg'
 import arrowUp from './assets/arrow-up.svg'
 import circle from './assets/circle.svg'
 import './index.scss'
 
-interface NewsApi {
-    id: string;
-    autor: string;
-    date: string;
-    image: string;
-    section: string;
-    title: string;
-    type: string;
-}
-
 function App() {
-    const [news, setNews] = useState<NewsApi[]>([])
+    const [news, setNews] = useState<Note[]>([])
     const [viewMore, setViewMore] = useState<boolean>(false)
     const [visibleNews, setVisibleNews] = useState<number>(5)
+    const { fetchApi } = useApi()
 
-    // usamos try-catch para un mejor manejo y control de errores y axios para hacer la petición
     useEffect(() => {
-        const importDataApi = async () => {
-            try {
-                const response = await axios.get('https://api.jsonbin.io/v3/b/63654b012b3499323bf58225')
-                if (response) {
-                    //si existe una respuesta podemos almacenar nuestra información en el estado local para su manejo
-                    const data: NewsApi[] = response.data?.record?.notes
-                    setNews(data)
-                }
-            } catch (error) {
-                console.error(error)
-            }
-        }
-        importDataApi()
+        fechData()
         //el array de dependencias se deja vacío para que el llamado a la api solo se realice cuando se monta el componente
     }, [])
+
+    const fechData = async () => {
+        const dataApi = await fetchApi()
+        if (dataApi) setNews(dataApi)
+    }
 
     const handleChangeButton = () => {
         // esta función nos permite cambiar el estado de "viewMore" que controla el botón de "ver más"
@@ -58,7 +42,7 @@ function App() {
                 <div className="container-items">
                     {news.length > 0 && (
                         //el slice particiona la información para evitar hacer más peticiones a la API
-                        news?.slice(0, visibleNews).map((newItem: NewsApi) => (
+                        news?.slice(0, visibleNews).map((newItem: Note) => (
                             <div key={newItem.id} className="container-items-news">
                                 <img className="container-icon" src={circle} alt="circle" />
                                 <p>{newItem.title}</p>
